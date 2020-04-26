@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: redis
+  redis:
+    url: redis://localhost:6379

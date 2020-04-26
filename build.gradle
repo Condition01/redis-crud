@@ -1,0 +1,33 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'br.com.training.redis'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation group: 'org.apache.commons', name: 'commons-pool2', version: '2.6.2'
+	implementation group: 'redis.clients', name: 'jedis', version: '3.2.0'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+task runCrud(type: JavaExec) {
+	main = 'br.com.training.redis.RedisCrudApplication'
+	classpath = sourceSets.main.runtimeClasspath
+//	args '--spring.profiles.active=dev'
+}
